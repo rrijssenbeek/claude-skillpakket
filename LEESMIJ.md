@@ -28,6 +28,7 @@ pakt de zip uit en draait `bash installeer.sh`. Zelfde resultaat, één stap mee
 
 ```
 Skills/
+├── README.md                 wat de ontvanger als eerste ziet op GitHub
 ├── INSTALLEREN.md            handleiding voor de ontvanger
 ├── LEESMIJ.md                dit bestand
 ├── installeer.sh             kopieert skills, installeert plugins
