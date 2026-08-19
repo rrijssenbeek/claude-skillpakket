@@ -21,8 +21,26 @@ Lokale werkmap: `~/Projects/claude-skillpakket`.
 git clone https://github.com/rrijssenbeek/claude-skillpakket.git && bash claude-skillpakket/installeer.sh
 ```
 
-**Heeft de ander geen GitHub:** deel de Drive-map met leesrechten. Hij downloadt hem,
-pakt de zip uit en draait `bash installeer.sh`. Zelfde resultaat, één stap meer.
+**Heeft de ander geen GitHub:** deel de Drive-map. Rechtermuisknop op de map *Skills*,
+dan Delen, e-mailadres invullen, rol **Kijker**. Kijkers mogen downloaden, meer rechten
+zijn niet nodig. Hij downloadt de map, pakt de zip uit en draait `bash installeer.sh`.
+
+Let op het tandwiel rechtsboven in het deelvenster: *Kijkers en reageerders kunnen
+downloaden, printen en kopiëren* moet **aan** staan. Staat dat uit, dan ziet hij de map
+wel maar kan hij hem niet ophalen, en dan werkt de installatie niet.
+
+Wil je niet per persoon delen, zet dan *Algemene toegang* van Beperkt naar *Iedereen met
+de link*, rol Kijker. Er staan geen sleutels of persoonsgegevens in het pakket, dat is
+nagekeken. Zie je die optie niet, dan blokkeert de Workspace-instelling van
+`rijssenbeek.info` extern delen; jij bent beheerder en kunt dat aanzetten in de Admin
+console onder Apps, Drive en Documenten, Instellingen voor delen.
+
+## Het draaiboek
+
+De volledige onboarding, van installeren tot controleren, staat als klikbare pagina met
+kopieerbare commando's op
+**https://claude.ai/code/artifact/6cb34f67-4a99-47e5-b66e-50893abda28f**. Die kun je
+doorsturen: deel 1 is voor jou, deel 2 en 3 zijn voor de ontvanger.
 
 ## Wat erin zit
 
