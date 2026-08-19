@@ -1,49 +1,7 @@
-# Claude Code skillpakket, installeren in 5 minuten
+# Naslag bij het skillpakket
 
-Dit pakket zet 59 skills en 10 plugins in je Claude Code. Skills zijn kant en klare
-werkwijzes die Claude vanzelf oppakt zodra het onderwerp langskomt. Je hoeft ze niet
-te onthouden of aan te roepen, je vraagt gewoon wat je wilt.
-
-## Wat je eerst nodig hebt
-
-1. **Claude Code** geïnstalleerd. Nog niet? Ga naar [claude.com/claude-code](https://claude.com/claude-code)
-   en volg de installatie voor je systeem.
-2. Een **terminal** (op Mac: Terminal of iTerm, in Programma's onder Hulpprogramma's).
-3. Deze map, gedownload naar je computer. In Google Drive: rechtsklik op de map
-   **Skills**, dan Downloaden. Pak de zip uit.
-
-## Installeren
-
-Open de terminal, sleep de uitgepakte map erin om het pad te krijgen, en draai:
-
-```bash
-cd ~/Downloads/Skills && bash installeer.sh
-```
-
-Het script doet drie dingen:
-
-1. Alle skills kopiëren naar `~/.claude/skills`
-2. De plugins installeren via de officiële marketplaces
-3. Vertellen hoe je gstack erbij zet (optioneel, grote extra suite)
-
-Staat de `claude` opdracht niet op je systeem, dan slaat het script de plugins over
-en toont het de regels die je zelf kunt plakken. Je kunt plugins ook installeren via
-het menu `/plugin` binnen Claude Code.
-
-Daarna Claude Code opnieuw opstarten. Klaar.
-
-**Varianten:**
-
-```bash
-bash installeer.sh --alleen-skills
-```
-
-```bash
-bash installeer.sh --overschrijf
-```
-
-De eerste slaat de plugins over. De tweede vervangt skills die je al had, zonder die
-vlag blijven bestaande skills staan.
+Installeren staat in **[README.md](README.md)**, dat is één regel. Dit bestand gaat over
+wat er in zit, wat je per skill nog los moet regelen, en wat te doen als iets niet werkt.
 
 ## Wat er in het pakket zit
 

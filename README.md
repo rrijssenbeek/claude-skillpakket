@@ -1,17 +1,28 @@
 # Claude Code skillpakket
 
-59 skills en 10 plugins voor Claude Code, in één keer geïnstalleerd.
+59 skills voor Claude Code, in één keer geïnstalleerd. Marketing, design, bouwen,
+onderzoek, video en een compacte antwoordmodus.
 
 ## Installeren
 
 ```bash
-git clone https://github.com/rrijssenbeek/claude-skillpakket.git && bash claude-skillpakket/installeer.sh
+git clone https://github.com/rrijssenbeek/claude-skillpakket.git ~/.claude/skillpakket && bash ~/.claude/skillpakket/installeer.sh
 ```
 
-Daarna Claude Code opnieuw opstarten.
+Sluit Claude Code daarna helemaal af en start hem opnieuw. Skills worden bij het
+opstarten ingelezen.
 
-Alleen de skills, zonder plugins: `bash installeer.sh --alleen-skills`
-Bestaande skills vervangen: `bash installeer.sh --overschrijf`
+Je hoeft de skills niet aan te roepen: Claude pakt ze vanzelf op zodra het onderwerp
+langskomt. Gebeurt dat niet, noem er dan een bij naam ("gebruik de copywriting skill").
+
+| Wat | Hoe |
+|---|---|
+| Bijwerken | `git -C ~/.claude/skillpakket pull && bash ~/.claude/skillpakket/installeer.sh --overschrijf` |
+| Ook tien plugins erbij | `bash ~/.claude/skillpakket/installeer.sh --met-plugins` |
+| Bestaande skills met rust laten | dat is de standaard, `--overschrijf` doorbreekt hem |
+
+Het script raakt je plugins niet aan tenzij je `--met-plugins` meegeeft. Regel je die al
+via `.claude/settings.json`, laat de vlag dan weg.
 
 ## Wat erin zit
 
@@ -22,18 +33,14 @@ Bestaande skills vervangen: `bash installeer.sh --overschrijf`
 | Bouwen en code | 9 | Beveiliging, schaalbaarheid, kosten, n8n, Trigger.dev, Composio |
 | Werk en onderzoek | 7 | Diepteonderzoek, klantenservice, tekst menselijker maken, Upwork |
 | Video | 4 | YouTube-thumbnails, clips, B-roll, pop-upgraphics |
-| Caveman | 7 | Compacte antwoordmodus, minder tokens |
+| Caveman | 7 | Compacte antwoordmodus, scheelt tot 75% aan tokens |
 
-Plus 10 plugins: superpowers, episodic-memory, superpowers-chrome, frontend-design,
-claude-code-setup, ponytail, claude-mem, notfair, watch en claude-council.
-
-**[INSTALLEREN.md](INSTALLEREN.md)** bevat de volledige handleiding: wat elke categorie
-doet, wat je nog los moet regelen aan sleutels en koppelingen, en wat te doen als iets
-niet werkt.
+De meeste skills werken meteen. Een handvol heeft een account of API-sleutel nodig,
+en de optionele gstack-suite staat er los bij. Dat staat allemaal in
+**[INSTALLEREN.md](INSTALLEREN.md)**.
 
 ## Herkomst
 
 De 22 marketingskills komen uit [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) (MIT).
 De optionele gstack-suite uit [garrytan/gstack](https://github.com/garrytan/gstack) (MIT).
-De plugins uit de marketplaces die in `installeer.sh` staan. De overige skills komen uit
-losse open bronnen en zijn hier verzameld, niet aangepast.
+De overige skills komen uit losse open bronnen en zijn hier verzameld, niet aangepast.

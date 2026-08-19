@@ -1,125 +1,73 @@
-# Skills, deelbaar pakket (voor Ruben)
+# Skillpakket (voor Ruben)
 
-Dit pakket zet Claude Code in één keer goed neer bij iemand anders. Voor de ontvanger
-is `INSTALLEREN.md` het enige dat telt, dit bestand is voor jou.
+Dit pakket zet iemands Claude Code in één handeling vol met jouw skills. Voor de ontvanger
+is `README.md` het enige dat telt; dit bestand is voor jou.
 
-Het staat op twee plekken:
-
-| Plek | Rol |
-|---|---|
-| [github.com/rrijssenbeek/claude-skillpakket](https://github.com/rrijssenbeek/claude-skillpakket) (privé) | **Bron van waarheid.** Hier werk je bij. |
-| [Drive: 7. Claude Code/Skills](https://drive.google.com/drive/folders/1hq2H_jdJfIn6ldal9lFcK8Exr8RX0cDV) | Kopie, voor wie geen GitHub heeft. |
-
+**De repo is de enige route.** `github.com/rrijssenbeek/claude-skillpakket` staat sinds
+19-08-2026 **publiek**, zodat de installatie één regel is die Claude zelf kan uitvoeren.
 Lokale werkmap: `~/Projects/claude-skillpakket`.
 
-## Hoe je hem deelt
+Waarom publiek: privé werkte alleen met een uitnodiging per persoon, en de Drive-route
+kostte downloaden, uitpakken en een pad opzoeken. Dat was de enige plek in het hele
+draaiboek waar iemand buiten de app moest klooien. Kanttekening: zes design-skills
+(`brand`, `design`, `design-system`, `slides`, `banner-design`, `impeccable`) hebben geen
+vindbare bron of licentie. De marketingskills en gstack zijn MIT.
 
-**Heeft de ander GitHub:** nodig hem uit als collaborator (Settings, Collaborators, of
-`gh api -X PUT repos/rrijssenbeek/claude-skillpakket/collaborators/<naam>`). Hij plakt dan:
+## Hoe het wordt gebruikt
 
-```bash
-git clone https://github.com/rrijssenbeek/claude-skillpakket.git && bash claude-skillpakket/installeer.sh
-```
+In het A Mi Manera-dashboard, AI-Fundamenten, **Claude Code inrichten**
+(`/ai-fundament/inrichting`). Fase 1 is de eerste batch en bestaat uit twee plak-zinnen:
 
-**Heeft de ander geen GitHub:** deel de Drive-map. Rechtermuisknop op de map *Skills*,
-dan Delen, e-mailadres invullen, rol **Kijker**. Kijkers mogen downloaden, meer rechten
-zijn niet nodig. Hij downloadt de map, pakt de zip uit en draait `bash installeer.sh`.
+1. **Startpakket** — de drie kern-plugins via `.claude/settings.json`
+2. **Alle skills in één keer** — dit pakket, stap-id `skillpakket`
 
-Let op het tandwiel rechtsboven in het deelvenster: *Kijkers en reageerders kunnen
-downloaden, printen en kopiëren* moet **aan** staan. Staat dat uit, dan ziet hij de map
-wel maar kan hij hem niet ophalen, en dan werkt de installatie niet.
+Die twee mechanismen blijven strikt gescheiden: **plugins komen uit het startpakket,
+skills uit dit pakket.** Daarom installeert `installeer.sh` standaard alléén skills. De
+plugins zitten achter `--met-plugins` en die vlag hoort niet in het draaiboek thuis.
 
-Wil je niet per persoon delen, zet dan *Algemene toegang* van Beperkt naar *Iedereen met
-de link*, rol Kijker. Er staan geen sleutels of persoonsgegevens in het pakket, dat is
-nagekeken. Zie je die optie niet, dan blokkeert de Workspace-instelling van
-`rijssenbeek.info` extern delen; jij bent beheerder en kunt dat aanzetten in de Admin
-console onder Apps, Drive en Documenten, Instellingen voor delen.
-
-## Het draaiboek
-
-De volledige onboarding staat in het A Mi Manera-dashboard onder AI-Fundamenten,
-**Claude Code inrichten** (`/ai-fundament/inrichting`). Dat is de bron: fasen 0 tot 6,
-Mac en Windows, met kopieerbare stappen. Dit pakket komt daar terug in fase 1 als de stap
-*Alle skills in één keer*.
-
-Wijzig je iets aan de installatie, werk dan die stap bij in
-`amimanera-dashboard/lib/fundament/inrichting-draaiboek.ts` (stap-id `skillpakket`).
+Caveman, UI UX Pro Max en Humanizer hadden eigen stappen in het draaiboek. Die zijn
+verwijderd: ze zitten in dit pakket, dus dat was dubbel.
 
 ## Wat erin zit
 
 ```
-Skills/
-├── README.md                 wat de ontvanger als eerste ziet op GitHub
-├── INSTALLEREN.md            handleiding voor de ontvanger
-├── LEESMIJ.md                dit bestand
-├── installeer.sh             kopieert skills, installeert plugins
-├── skills/                   59 skills in 6 categorieën
-│   ├── 01-marketing-en-groei     22
-│   ├── 02-design-en-ui           10
-│   ├── 03-bouwen-en-code          9
-│   ├── 04-werk-en-onderzoek       7
-│   ├── 05-video                   4
-│   └── 06-caveman                 7
-├── Uitleg/                   12 Word-documenten met achtergrond per skill
-└── _niet-in-pakket/          3 skills die bewust niet meegaan
+claude-skillpakket/
+├── README.md          de installatie, publieke voordeur
+├── INSTALLEREN.md     naslag: wat er in zit, wat je per skill nog regelt
+├── LEESMIJ.md         dit bestand
+├── installeer.sh      kopieert skills; plugins alleen met --met-plugins
+├── skills/            59 skills in 6 categorieën
+└── Uitleg/            12 Word-documenten met achtergrond per skill
 ```
 
-De categoriemappen zijn alleen voor het overzicht hier. Het script kopieert de skills
-plat naar `~/.claude/skills`, want zo verwacht Claude Code ze.
+Niet meegeleverd: **gstack** (1,1 GB git clone) en **super-video-maker** (261 MB). Die
+horen niet in een repo die je bij iemand uitrolt; gstack staat als installatieregel in het
+script.
 
-## Wat er bewust niet in zit
-
-**Jouw eigen werkwijze.** De commando's `/handoff`, `/doel`, `/stap`, `/verder`,
-`/traject`, `/toegang`, `/werkplekken`, `/loops` en de brein-serie staan in
-`~/.claude/commands/`. Ook de agents verkenner, bouwer en controleur, en je
-`~/.claude/CLAUDE.md`. Die horen bij jouw systeem, niet bij een buitenstaander. Als je
-ooit een teamlid uitrust, is dat een tweede pakket, geen uitbreiding van dit.
-
-**Bedrijfsspecifieke skills.** `nieuwsbericht` en `padelvoorstel` zitten vast aan de
-IPA-website, HubSpot en de mailbox. `anti-slop-design` verwijst naar jouw merken en
-eerder afgekeurde ontwerpen.
-
-**In `_niet-in-pakket/`:** `albert-dm` (schrijft in andermans stem), `new-client-system`
-(gebonden aan een template die de ontvanger niet heeft) en `frontend-design` (zit al
-als plugin in het pakket, de losse kopie zou botsen).
-
-**Twee grote repo's.** gstack is 1,1 GB en super-video-maker 261 MB. Die kopieer je niet
-via Drive, dat zijn git clones. gstack staat als installatieregel in het script en in de
-handleiding. Super-video-maker heb je zelf ook nog niet gebruikt, die heb ik weggelaten.
+Ook niet meegeleverd, en dat moet zo blijven: jouw eigen commando's (`/handoff`, `/doel`,
+`/stap`, de brein-serie), je agents en je `CLAUDE.md`. Een teamlid-pakket is iets anders
+dan dit; teamleden lopen via de dashboard/MCP-route.
 
 ## Bijwerken
 
-Werk altijd in `~/Projects/claude-skillpakket`, nooit rechtstreeks in Drive. Een git-repo
-in een sync-map geeft problemen.
-
-Nieuwe skill van je eigen machine erbij zetten:
+Werk altijd in `~/Projects/claude-skillpakket`, nooit in een Drive-map. Nieuwe skill erbij:
 
 ```bash
 rsync -a --exclude '.git' --exclude '*.docx' ~/.claude/skills/<naam>/ ~/Projects/claude-skillpakket/skills/<categorie>/<naam>/
 ```
 
-Daarna committen, pushen en de Drive-kopie gelijktrekken:
+Daarna committen en pushen. Iedereen die het al heeft haalt het op met:
 
 ```bash
-git -C ~/Projects/claude-skillpakket add -A && git -C ~/Projects/claude-skillpakket commit -m "<wat>" && git -C ~/Projects/claude-skillpakket push
+git -C ~/.claude/skillpakket pull && bash ~/.claude/skillpakket/installeer.sh --overschrijf
 ```
 
-```bash
-rsync -a --delete --exclude '.git' --exclude '.gitignore' ~/Projects/claude-skillpakket/ "/Users/r_rijssenbeek/Library/CloudStorage/GoogleDrive-ruben@rijssenbeek.info/Mijn Drive/7. Claude Code/Skills/"
-```
+Verandert de installatie zelf, werk dan ook stap `skillpakket` bij in
+`amimanera-dashboard/lib/fundament/inrichting-draaiboek.ts`.
 
-Let op: die laatste regel gebruikt `--delete` en wist dus de map `_niet-in-pakket/` in
-Drive. Die staat bewust niet in de repo. Wil je hem houden, laat `--delete` weg.
+## De Drive-map
 
-Nieuwe plugin erbij? Voeg een regel toe aan de `PLUGINS`-lijst in `installeer.sh`,
-in de vorm `marketplace-bron|marketplace-naam|plugin-naam|waarvoor`, en werk de tabel in
-`INSTALLEREN.md` bij.
-
-## Wat gecontroleerd is
-
-Het script is getest op een verse installatie én vanaf een schone clone van de repo:
-59 skills geplaatst, alle 59 met een geldige `SKILL.md`, en een tweede keer draaien laat
-bestaande skills met rust. Het
-plugin-deel kon hier niet getest worden, want de `claude` opdracht staat niet op het
-pad in deze omgeving. Het script vangt dat geval af en toont dan de commando's om te
-plakken. De skills zijn gescand op sleutels en tokens, er staat niets gevoeligs in.
+`7. Claude Code/Skills/` in Mijn Drive bevat nog een kopie van 19-08-2026, gedeeld met
+"iedereen met de link". Sinds de repo publiek is, is die overbodig en wordt hij niet meer
+bijgewerkt. Laat hem staan als archief of gooi hem weg; hij wordt nergens meer genoemd,
+niet in het draaiboek en niet in deze repo.

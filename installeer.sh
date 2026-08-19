@@ -1,18 +1,19 @@
 #!/usr/bin/env bash
-# Installeert het complete skill- en pluginpakket voor Claude Code.
-# Draaien vanuit deze map:  bash installeer.sh
-# Alleen de skills, zonder plugins:  bash installeer.sh --alleen-skills
-# Bestaande skills overschrijven:    bash installeer.sh --overschrijf
+# Installeert het skillpakket voor Claude Code.
+# Draaien vanuit deze map:  bash installeer.sh          (59 skills)
+# Ook de tien plugins erbij: bash installeer.sh --met-plugins
+# Bestaande skills vervangen: bash installeer.sh --overschrijf
 
 set -uo pipefail
 
 BRON="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOEL="$HOME/.claude/skills"
-ALLEEN_SKILLS=0
+MET_PLUGINS=0
 OVERSCHRIJF=0
 for arg in "$@"; do
   case "$arg" in
-    --alleen-skills) ALLEEN_SKILLS=1 ;;
+    --met-plugins)   MET_PLUGINS=1 ;;
+    --alleen-skills) MET_PLUGINS=0 ;;   # standaardgedrag, blijft werken
     --overschrijf)   OVERSCHRIJF=1 ;;
     -h|--help) sed -n '2,6p' "${BASH_SOURCE[0]}"; exit 0 ;;
     *) echo "Onbekende optie: $arg"; exit 1 ;;
@@ -44,8 +45,10 @@ done < <(find "$BRON/skills" -mindepth 2 -maxdepth 2 -type d)
 groen "   $nieuw nieuw geïnstalleerd, $vervangen vervangen, $bestond overgeslagen (bestonden al)"
 [ "$bestond" -gt 0 ] && geel "   Wil je die overschrijven: bash installeer.sh --overschrijf"
 
-if [ "$ALLEEN_SKILLS" = "1" ]; then
-  kop "Klaar. Start Claude Code opnieuw op."
+if [ "$MET_PLUGINS" != "1" ]; then
+  kop "Klaar. Sluit Claude Code helemaal af en start hem opnieuw."
+  echo "Regel je plugins niet zelf via .claude/settings.json? Dan kun je de tien"
+  echo "plugins er alsnog bij zetten met: bash installeer.sh --met-plugins"
   exit 0
 fi
 
