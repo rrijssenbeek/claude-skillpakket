@@ -37,10 +37,13 @@ console onder Apps, Drive en Documenten, Instellingen voor delen.
 
 ## Het draaiboek
 
-De volledige onboarding, van installeren tot controleren, staat als klikbare pagina met
-kopieerbare commando's op
-**https://claude.ai/code/artifact/6cb34f67-4a99-47e5-b66e-50893abda28f**. Die kun je
-doorsturen: deel 1 is voor jou, deel 2 en 3 zijn voor de ontvanger.
+De volledige onboarding staat in het A Mi Manera-dashboard onder AI-Fundamenten,
+**Claude Code inrichten** (`/ai-fundament/inrichting`). Dat is de bron: fasen 0 tot 6,
+Mac en Windows, met kopieerbare stappen. Dit pakket komt daar terug in fase 1 als de stap
+*Alle skills in één keer*.
+
+Wijzig je iets aan de installatie, werk dan die stap bij in
+`amimanera-dashboard/lib/fundament/inrichting-draaiboek.ts` (stap-id `skillpakket`).
 
 ## Wat erin zit
 
