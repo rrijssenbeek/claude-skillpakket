@@ -1,16 +1,28 @@
 # Skills, deelbaar pakket (voor Ruben)
 
-Deze map is het pakket dat je deelt met iemand bij wie je Claude Code installeert.
-Je stuurt de map, de ander draait één script en heeft dan dezelfde skills als jij.
+Dit pakket zet Claude Code in één keer goed neer bij iemand anders. Voor de ontvanger
+is `INSTALLEREN.md` het enige dat telt, dit bestand is voor jou.
 
-**Deelbare link:** https://drive.google.com/drive/folders/1hq2H_jdJfIn6ldal9lFcK8Exr8RX0cDV
+Het staat op twee plekken:
 
-Voor de ontvanger is `INSTALLEREN.md` het enige dat telt. Dit bestand is voor jou.
+| Plek | Rol |
+|---|---|
+| [github.com/rrijssenbeek/claude-skillpakket](https://github.com/rrijssenbeek/claude-skillpakket) (privé) | **Bron van waarheid.** Hier werk je bij. |
+| [Drive: 7. Claude Code/Skills](https://drive.google.com/drive/folders/1hq2H_jdJfIn6ldal9lFcK8Exr8RX0cDV) | Kopie, voor wie geen GitHub heeft. |
 
-## Hoe je hem gebruikt
+Lokale werkmap: `~/Projects/claude-skillpakket`.
 
-Rechtsklik op de map in Drive, dan Delen, link kopiëren met leesrechten. De ander
-downloadt de map, pakt de zip uit en draait `bash installeer.sh`. Meer is het niet.
+## Hoe je hem deelt
+
+**Heeft de ander GitHub:** nodig hem uit als collaborator (Settings, Collaborators, of
+`gh api -X PUT repos/rrijssenbeek/claude-skillpakket/collaborators/<naam>`). Hij plakt dan:
+
+```bash
+git clone https://github.com/rrijssenbeek/claude-skillpakket.git && bash claude-skillpakket/installeer.sh
+```
+
+**Heeft de ander geen GitHub:** deel de Drive-map met leesrechten. Hij downloadt hem,
+pakt de zip uit en draait `bash installeer.sh`. Zelfde resultaat, één stap meer.
 
 ## Wat erin zit
 
@@ -55,12 +67,27 @@ handleiding. Super-video-maker heb je zelf ook nog niet gebruikt, die heb ik weg
 
 ## Bijwerken
 
-Heb je een nieuwe skill die generiek bruikbaar is, kopieer hem in de juiste categoriemap.
-Verandert er iets aan een skill op je eigen machine, dan haal je hem opnieuw op met:
+Werk altijd in `~/Projects/claude-skillpakket`, nooit rechtstreeks in Drive. Een git-repo
+in een sync-map geeft problemen.
+
+Nieuwe skill van je eigen machine erbij zetten:
 
 ```bash
-rsync -a --exclude '.git' --exclude '*.docx' ~/.claude/skills/<naam>/ "/Users/r_rijssenbeek/Library/CloudStorage/GoogleDrive-ruben@rijssenbeek.info/Mijn Drive/7. Claude Code/Skills/skills/<categorie>/<naam>/"
+rsync -a --exclude '.git' --exclude '*.docx' ~/.claude/skills/<naam>/ ~/Projects/claude-skillpakket/skills/<categorie>/<naam>/
 ```
+
+Daarna committen, pushen en de Drive-kopie gelijktrekken:
+
+```bash
+git -C ~/Projects/claude-skillpakket add -A && git -C ~/Projects/claude-skillpakket commit -m "<wat>" && git -C ~/Projects/claude-skillpakket push
+```
+
+```bash
+rsync -a --delete --exclude '.git' --exclude '.gitignore' ~/Projects/claude-skillpakket/ "/Users/r_rijssenbeek/Library/CloudStorage/GoogleDrive-ruben@rijssenbeek.info/Mijn Drive/7. Claude Code/Skills/"
+```
+
+Let op: die laatste regel gebruikt `--delete` en wist dus de map `_niet-in-pakket/` in
+Drive. Die staat bewust niet in de repo. Wil je hem houden, laat `--delete` weg.
 
 Nieuwe plugin erbij? Voeg een regel toe aan de `PLUGINS`-lijst in `installeer.sh`,
 in de vorm `marketplace-bron|marketplace-naam|plugin-naam|waarvoor`, en werk de tabel in
@@ -68,8 +95,9 @@ in de vorm `marketplace-bron|marketplace-naam|plugin-naam|waarvoor`, en werk de 
 
 ## Wat gecontroleerd is
 
-Het script is getest op een verse installatie: 59 skills geplaatst, alle 59 met een
-geldige `SKILL.md`, en een tweede keer draaien laat bestaande skills met rust. Het
+Het script is getest op een verse installatie én vanaf een schone clone van de repo:
+59 skills geplaatst, alle 59 met een geldige `SKILL.md`, en een tweede keer draaien laat
+bestaande skills met rust. Het
 plugin-deel kon hier niet getest worden, want de `claude` opdracht staat niet op het
 pad in deze omgeving. Het script vangt dat geval af en toont dan de commando's om te
 plakken. De skills zijn gescand op sleutels en tokens, er staat niets gevoeligs in.
